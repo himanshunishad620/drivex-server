@@ -14,6 +14,7 @@ app.use(
     credentials: true,
   }),
 );
+app.get("/", (req, res) => res.send("Working"));
 app.use(cookieParser());
 app.use("/api", authRoutes);
 app.use("/api", fileRoutes);
