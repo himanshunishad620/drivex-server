@@ -8,7 +8,7 @@ exports.contact = async (req, res) => {
       "You have a new feedback",
       `By:${firstName} ${lastName}
        email:${email}
-       ${message}`
+       ${message}`,
     );
     res.status(200).json({ msg: "Message sent successfuly!" });
   } catch (error) {

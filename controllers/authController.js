@@ -21,6 +21,7 @@ exports.generateOtp = async (req, res) => {
     return res.status(404).json({ success: false, msg: "Unable to sendOtp!" });
   try {
     await sendEmail(email, "Your Register OTP", `Your OTP is ${otp}`);
+    console.log(otp);
     res.status(200).json({ success: true, msg: "OTP sent successfully!", otp });
   } catch (error) {
     res.status(500).json({ success: false, msg: "Internal server error!" });
@@ -80,7 +81,7 @@ exports.forgotPassword = async (req, res) => {
     await sendEmail(
       email,
       "Reset Password Link ",
-      `Password Reset Link ${process.env.FRONTEND_URL}/auth/resetPassword?token=${token}`
+      `Password Reset Link ${process.env.FRONTEND_URL}/auth/resetPassword?token=${token}`,
     );
     res.status(200).json({ success: true, msg: "Link sent successfully!" });
   } catch (error) {
@@ -99,7 +100,7 @@ exports.resetPassword = async (req, res) => {
     await sendEmail(
       email,
       "Password Changed Successfully! ",
-      "You password has changed successfully!"
+      "You password has changed successfully!",
     );
     res
       .status(200)

@@ -11,11 +11,12 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, text) => {
   try {
-    await transporter.sendMail({
+    const res = await transporter.sendMail({
       to,
       subject,
       text,
     });
+    console.log(res);
   } catch (error) {
     console.log(error);
   }

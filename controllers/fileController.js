@@ -6,7 +6,7 @@ const {
   categorizeFile,
   getCategoryUpdate,
   getResourceType,
-} = require("./../services/fileSevices");
+} = require("../services/fileSevices");
 
 exports.renameFile = async (req, res) => {
   const { _id, fileName, newName } = req.body;
@@ -23,7 +23,7 @@ exports.renameFile = async (req, res) => {
     }
     await UserStorage.updateOne(
       { userId, "files._id": _id },
-      { $set: { "files.$.name": newFileName } }
+      { $set: { "files.$.name": newFileName } },
     );
 
     return res.json({ message: "File renamed successfully" });
@@ -57,7 +57,7 @@ exports.deleteFile = async (req, res) => {
         $inc: getCategoryUpdate(type, size, false),
       },
 
-      { new: true }
+      { new: true },
     );
 
     res.status(200).json({ success: true, result });
@@ -123,10 +123,10 @@ exports.fileUpload = async (req, res) => {
             $inc: getCategoryUpdate(type, newFile.size, true),
           },
 
-          { new: true }
+          { new: true },
         );
         res.json(result);
-      }
+      },
     );
     resultClodinary.end(req.file.buffer);
   } catch (err) {
