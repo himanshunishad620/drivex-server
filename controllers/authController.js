@@ -115,5 +115,6 @@ exports.logout = async (req, res) => {
     secure: true,
     sameSite: "None",
   });
+  console.log("Logout invoked");
   res.status(200).json({ message: "Logged out and cookie cleared" });
 };
