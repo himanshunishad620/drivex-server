@@ -53,7 +53,6 @@ exports.login = async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "None",
-    maxAge: 1000 * 60 * 60 * 2,
   });
   res
     .status(200)
@@ -111,7 +110,7 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-  res.clearCookie("token", {
+  res.cookie("token", null, {
     httpOnly: true,
     secure: true,
     sameSite: "None",
